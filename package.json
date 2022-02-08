@@ -6,6 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "export": "next export",
     "type-check": "tsc",
     "eslint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,jsx}\""

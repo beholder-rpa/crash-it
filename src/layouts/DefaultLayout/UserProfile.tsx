@@ -24,6 +24,7 @@ const UserProfile = () => {
                   <span className="sr-only">Open user menu</span>
                   <div className="h-8 w-8">
                     <Image
+                      unoptimized={true}
                       className="rounded-full"
                       placeholder="blur"
                       src={DummyAvatar}

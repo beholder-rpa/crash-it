@@ -64,14 +64,14 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
-      # -
-      #   name: Typecheck
-      #   run: |
-      #     yarn typecheck
-      # -
-      #   name: Linter
-      #   run: |
-      #     yarn lint --cache
+      -
+        name: typecheck
+        run: |
+          yarn type-check
+      -
+        name: lint
+        run: |
+          yarn eslint --cache
       # -
       #   name: Unit tests
       #   run: |
@@ -94,3 +94,7 @@ jobs:
           NEXT_DISABLE_SENTRY: 1
           # Disable sentry source map upload (when not needed)
           NEXT_SENTRY_DRY_RUN: 1
+      -
+        name: export
+        run: |
+          yarn export
