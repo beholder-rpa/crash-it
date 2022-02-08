@@ -119,5 +119,6 @@ jobs:
         name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
+          nojekyll: true # Resolves issues with files and folders that begin with an underscore
           branch: gh-pages # The branch the action should deploy to.
           folder: out # The folder the action should deploy.
