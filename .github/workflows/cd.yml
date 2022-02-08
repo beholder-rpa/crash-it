@@ -15,7 +15,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      NODE_ENV: production
       FONTAWESOME_NPM_AUTH_TOKEN: ${{secrets.FONTAWESOME_NPM_AUTH_TOKEN}}
       working-directory: .
 
@@ -89,6 +88,8 @@ jobs:
         run: |
           yarn build
         env:
+          # Build for production
+          NODE_ENV: production
           # Speed up build: they are linted in a previous step
           NEXTJS_IGNORE_ESLINT: 1
           # Speed up build: they are typechecked in a previous step
@@ -105,6 +106,9 @@ jobs:
         name: export 📮
         run: |
           yarn export
+        env:
+          # Build for production
+          NODE_ENV: production
       -
         name: Upload artifacts 🪣
         uses: actions/upload-artifact@v2
