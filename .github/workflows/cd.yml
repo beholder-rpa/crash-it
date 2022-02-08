@@ -66,7 +66,7 @@ jobs:
       -
         name: Install dependencies 📦
         run: |
-          yarn install --immutable
+          yarn install --non-interactive --immutable --prefer-offline
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
