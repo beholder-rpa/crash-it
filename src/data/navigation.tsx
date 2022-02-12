@@ -25,7 +25,7 @@ const navigation: Navigation[] = [
     icon: <FontAwesomeIcon icon={faPlay} />,
     current: true,
     defaultOpen: true,
-    url: '{{foo}}',
+    url: '{{foo}}/',
     children: [
       {
         title: `Run 'n Gun Test`,
@@ -62,7 +62,7 @@ const navigation: Navigation[] = [
     title: 'Sound Manager',
     icon: <FontAwesomeIcon icon={faFolderMusic} />,
     current: true,
-    url: '{{scheme}}://{{host}}/sound_manager',
+    url: '{{foo}}/sound_manager',
   },
 ];
 
