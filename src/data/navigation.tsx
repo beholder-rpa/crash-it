@@ -25,12 +25,12 @@ const navigation: Navigation[] = [
     icon: <FontAwesomeIcon icon={faPlay} />,
     current: true,
     defaultOpen: true,
-    url: '',
+    url: '{{foo}}',
     children: [
       {
         title: `Run 'n Gun Test`,
         icon: <FontAwesomeIcon icon={faPersonRunning} />,
-        url: 'run_n_gun',
+        url: '{{foo}}/run_n_gun',
       },
     ],
   },
