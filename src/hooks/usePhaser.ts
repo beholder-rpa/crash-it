@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-const IsBrowser = typeof window !== 'undefined' && typeof window.navigator !== 'undefined';
+import IsBrowser from '@utils/isBrowser';
 
 const usePhaser = (): typeof Phaser => {
   return useMemo(() => {
