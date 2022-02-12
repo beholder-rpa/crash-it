@@ -25,24 +25,45 @@ const navigation: Navigation[] = [
     icon: <FontAwesomeIcon icon={faPlay} />,
     current: true,
     defaultOpen: true,
-    url: '/',
-    children: [{ title: `Run 'n Gun Test`, icon: <FontAwesomeIcon icon={faPersonRunning} />, url: './run_n_gun' }],
+    url: '',
+    children: [
+      {
+        title: `Run 'n Gun Test`,
+        icon: <FontAwesomeIcon icon={faPersonRunning} />,
+        url: 'run_n_gun',
+      },
+    ],
   },
   {
     title: 'Sprite Editor',
     icon: <FontAwesomeIcon icon={faGrid5} />,
     current: true,
-    url: './sprite_editor',
+    url: '{{foo}}/sprite_editor',
   },
-  { title: 'Tile Editor', icon: <FontAwesomeIcon icon={faGameBoard} />, current: true, url: './tile_editor' },
+  {
+    title: 'Tile Editor',
+    icon: <FontAwesomeIcon icon={faGameBoard} />,
+    current: true,
+    url: '{{foo}}/tile_editor',
+  },
   {
     title: 'Character Editor',
     icon: <FontAwesomeIcon icon={faSnowman} />,
     current: true,
-    url: './character_editor',
+    url: '{{foo}}/character_editor',
   },
-  { title: 'Mob Editor', icon: <FontAwesomeIcon icon={faAlienMonster} />, current: true, url: './mob_editor' },
-  { title: 'Sound Manager', icon: <FontAwesomeIcon icon={faFolderMusic} />, current: true, url: './sound_manager' },
+  {
+    title: 'Mob Editor',
+    icon: <FontAwesomeIcon icon={faAlienMonster} />,
+    current: true,
+    url: '{{foo}}/mob_editor',
+  },
+  {
+    title: 'Sound Manager',
+    icon: <FontAwesomeIcon icon={faFolderMusic} />,
+    current: true,
+    url: '{{scheme}}://{{host}}/sound_manager',
+  },
 ];
 
 export default navigation;

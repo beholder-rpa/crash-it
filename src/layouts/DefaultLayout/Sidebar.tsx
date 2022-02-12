@@ -11,10 +11,13 @@ import SidebarItem from './SidebarItem';
 
 const Sidebar = () => {
   templateSettings.interpolate = /{{([\s\S]+?)}}/g;
-  const [urlTemplateData, setUrlTemplateData] = React.useState({ host: '' });
+  const [urlTemplateData, setUrlTemplateData] = React.useState({ foo: '', host: '' });
   useEffect(() => {
     setUrlTemplateData({
       ...urlTemplateData,
+      // FIXME: Uh, get this from the server somehow?
+      foo:
+        process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://beholder-rpa.github.io/crash-it/',
       host: window.location.host,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
