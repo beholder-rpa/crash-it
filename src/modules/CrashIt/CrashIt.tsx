@@ -1,11 +1,7 @@
 import { observer } from 'mobx-react';
-import dynamic from 'next/dynamic';
 
+import Game from '@components/Game';
 import usePhaser from '@hooks/usePhaser';
-
-const Game = dynamic(() => import('@components/Game'), {
-  ssr: false,
-});
 
 const CrashIt = () => {
   const Phaser = usePhaser();

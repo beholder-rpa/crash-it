@@ -1,8 +1,12 @@
 import type { NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import { observer } from 'mobx-react';
 
 import DefaultLayout from '@layouts/DefaultLayout';
-import RunNGun from '@modules/Protos/RunNGun';
+
+const RunNGun = dynamic(() => import('@modules/Protos/RunNGun'), {
+  ssr: false,
+});
 
 const RunNGunTestPage: NextPage = () => {
   return (

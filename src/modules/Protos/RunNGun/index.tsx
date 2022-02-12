@@ -1,19 +1,13 @@
 import { observer } from 'mobx-react';
-import dynamic from 'next/dynamic';
-import { useMemo } from 'react';
 
+import Game from '@components/Game';
 import usePhaser from '@hooks/usePhaser';
-import IsBrowser from '@utils/isBrowser';
 
-import type Bullet from './Bullet';
-
-const Game = dynamic(() => import('@components/Game'), {
-  ssr: false,
-});
+import Bullet from './Bullet';
 
 const RunNGun = () => {
   const Phaser = usePhaser();
-  const Bullet = useBullet();
+
   const preload = function (this: Phaser.Scene) {
     console.log('preload ->  preloading assets...', this);
     this.load.setBaseURL('.');
@@ -71,7 +65,7 @@ const RunNGun = () => {
 
     bullets = this.physics.add.group({
       classType: Bullet,
-      maxSize: 30,
+      maxSize: 20,
       runChildUpdate: true,
     });
   };
@@ -124,8 +118,11 @@ const RunNGun = () => {
     physics: {
       default: 'arcade',
       arcade: {
-        gravity: { y: 200 },
+        gravity: { y: 500 },
       },
+    },
+    fps: {
+      target: 60,
     },
     scene: {
       preload,
@@ -142,12 +139,3 @@ const RunNGun = () => {
 };
 
 export default observer(RunNGun);
-
-const useBullet = (): typeof Bullet | undefined => {
-  return useMemo(() => {
-    if (IsBrowser) {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      return require('./Bullet').default;
-    }
-  }, []);
-};
