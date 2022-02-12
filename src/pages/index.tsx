@@ -1,17 +1,13 @@
 import type { NextPage } from 'next';
 import { observer } from 'mobx-react';
-import dynamic from 'next/dynamic';
 
 import DefaultLayout from '@layouts/DefaultLayout';
-
-const Game = dynamic(() => import('@components/Game'), {
-  ssr: false,
-});
+import CrashIt from '@modules/CrashIt';
 
 const Home: NextPage = () => {
   return (
     <DefaultLayout>
-      <Game />
+      <CrashIt />
     </DefaultLayout>
   );
 };
