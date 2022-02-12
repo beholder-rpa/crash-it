@@ -1,5 +1,7 @@
-import * as React from 'react';
+import { useRef, useEffect } from 'react';
 import * as Phaser from 'phaser';
+
+import usePhaser from '@hooks/usePhaser';
 
 interface GameProps {
   children?: React.ReactNode;
@@ -7,18 +9,12 @@ interface GameProps {
   config: Phaser.Types.Core.GameConfig;
 }
 
-const IsBrowser = typeof window !== 'undefined' && typeof window.navigator !== 'undefined';
-
 const Game = ({ className = 'relative top-0 left-0 w-full h-full my-0', config }: GameProps) => {
-  const parentRef = React.useRef(null);
-  const gameRef = React.useRef<Phaser.Game>();
-  const Phaser = React.useMemo(() => {
-    if (IsBrowser) {
-      return require('phaser');
-    }
-  }, []);
+  const parentRef = useRef(null);
+  const gameRef = useRef<Phaser.Game>();
+  const Phaser = usePhaser();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (Phaser && parentRef.current) {
       const configWithParent = {
         ...config,

@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
-import * as Phaser from 'phaser';
 
-const Game = dynamic(() => import('@components/PhaserWrapper'), {
+import usePhaser from '@hooks/usePhaser';
+
+const Game = dynamic(() => import('@components/Game'), {
   ssr: false,
 });
 
 const CrashIt = () => {
-  const [config, setConfig] = useState<Phaser.Types.Core.GameConfig>();
+  const Phaser = usePhaser();
   const preload = function (this: Phaser.Scene) {
     console.log('preload ->  preloading assets...', this);
     this.load.setBaseURL('.');
@@ -56,35 +56,31 @@ const CrashIt = () => {
     backgroundMusic.play();
   };
 
-  useEffect(() => {
-    const config: Phaser.Types.Core.GameConfig = {
-      type: Phaser.AUTO,
-      backgroundColor: '#20134e',
-      scale: {
-        mode: Phaser.Scale.RESIZE,
-      },
-      physics: {
-        default: 'arcade',
-        arcade: {
-          gravity: { y: 200 },
-        },
-      },
-      scene: {
-        preload,
-        create,
-      },
-      callbacks: {
-        preBoot: (game) => console.log('preBoot -> ', game),
-        postBoot: (game) => console.log('postBoot -> ', game),
-      },
-    };
-
-    setConfig(config);
-  }, []);
-
-  if (!config) {
-    return <div>Loading...</div>;
+  if (!Phaser) {
+    return null;
   }
+
+  const config: Phaser.Types.Core.GameConfig = {
+    type: Phaser.AUTO,
+    backgroundColor: '#20134e',
+    scale: {
+      mode: Phaser.Scale.RESIZE,
+    },
+    physics: {
+      default: 'arcade',
+      arcade: {
+        gravity: { y: 200 },
+      },
+    },
+    scene: {
+      preload,
+      create,
+    },
+    callbacks: {
+      preBoot: (game) => console.log('preBoot -> ', game),
+      postBoot: (game) => console.log('postBoot -> ', game),
+    },
+  };
 
   return <Game config={config} />;
 };
